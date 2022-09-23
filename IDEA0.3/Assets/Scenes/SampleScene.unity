@@ -364,7 +364,7 @@ GameObject:
   - component: {fileID: 679748299}
   - component: {fileID: 679748298}
   - component: {fileID: 679748297}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Square
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -478,7 +478,7 @@ GameObject:
   - component: {fileID: 750598846}
   - component: {fileID: 750598845}
   - component: {fileID: 750598844}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Square (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -619,7 +619,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.35148907, y: 4.949231}
-  m_Size: {x: 3.3820858, y: 10.668152}
+  m_Size: {x: 4, y: 10}
   m_Direction: 0
 --- !u!50 &874147559
 Rigidbody2D:
@@ -777,7 +777,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 874147557}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -26.41, y: -9.35, z: 0}
+  m_LocalPosition: {x: -43.1, y: -9.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -822,7 +822,7 @@ GameObject:
   - component: {fileID: 1578945934}
   - component: {fileID: 1578945933}
   - component: {fileID: 1578945932}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Square (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -936,7 +936,7 @@ GameObject:
   - component: {fileID: 1667747379}
   - component: {fileID: 1667747378}
   - component: {fileID: 1667747377}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Square (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
