@@ -49,33 +49,28 @@ public class PlayerMove : MonoBehaviour
         }
         keys[0].UpdateAction(() => Move(), () => run());
         keys[1].UpdateAction(() => Move(), () => run());
-        
-        Animation();
-        //Jump
+        /*
+        keys[0].UpdateAction(() => Debug.Log("W"), () => Debug.Log("WW"));
+        keys[1].UpdateAction(() => Debug.Log("A"), () => Debug.Log("AA"));
+        keys[2].UpdateAction(() => Debug.Log("S"), () => Debug.Log("SS"));
+        keys[3].UpdateAction(() => Debug.Log("D"), () => Debug.Log("DD"));
+        */
+
         if (Input.GetButtonDown("Jump"))
         {
             rigid.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
-            _animator.SetBool("isJumping", true);
+
         }
+
+
+        Animation();
+
     }
 
     void FixedUpdate() // 꾹 누르거나...
     {
-        //RayCast : 오브젝트 검색을 위해 Ray를 쏘는 방식
-        //Landing Platform
-        if(rigid.velocity.y < 0){
-            Debug.DrawRay(rigid.position, Vector3.down, new Color(0, 1, 0));
-            RaycastHit2D rayHit = Physics2D.Raycast(rigid.position, Vector3.down, 1, LayerMask.GetMask("Platform"));
-            if (rayHit.collider != null)
-            {
-                if (rayHit.distance < 5f)
-                {
-                    Debug.Log(rayHit.collider.name);
-                    _animator.SetBool("isJumping", false);
-                }
-            }
-        }
         
+
         //Move();
     }
 
