@@ -364,7 +364,7 @@ GameObject:
   - component: {fileID: 679748299}
   - component: {fileID: 679748298}
   - component: {fileID: 679748297}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Square
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -478,7 +478,7 @@ GameObject:
   - component: {fileID: 750598846}
   - component: {fileID: 750598845}
   - component: {fileID: 750598844}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Square (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -723,23 +723,18 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 57a74d19b0a5bb340bea467c42db87d5, type: 2}
-  - {fileID: 2100000, guid: 9e748ac6083993344837d5f85028883c, type: 2}
-  - {fileID: 2100000, guid: 57a74d19b0a5bb340bea467c42db87d5, type: 2}
-  - {fileID: 2100000, guid: 9e748ac6083993344837d5f85028883c, type: 2}
-  - {fileID: 2100000, guid: 57a74d19b0a5bb340bea467c42db87d5, type: 2}
-  - {fileID: 2100000, guid: 9e748ac6083993344837d5f85028883c, type: 2}
-  - {fileID: 2100000, guid: 57a74d19b0a5bb340bea467c42db87d5, type: 2}
-  - {fileID: 2100000, guid: 9e748ac6083993344837d5f85028883c, type: 2}
-  - {fileID: 2100000, guid: 57a74d19b0a5bb340bea467c42db87d5, type: 2}
-  - {fileID: 2100000, guid: 9e748ac6083993344837d5f85028883c, type: 2}
-  - {fileID: 2100000, guid: 57a74d19b0a5bb340bea467c42db87d5, type: 2}
-  - {fileID: 2100000, guid: 9e748ac6083993344837d5f85028883c, type: 2}
+  - {fileID: 2100000, guid: ccbe09fb331550e48b449787d5d44ea6, type: 2}
   - {fileID: 2100000, guid: 57a74d19b0a5bb340bea467c42db87d5, type: 2}
   - {fileID: 2100000, guid: 9e748ac6083993344837d5f85028883c, type: 2}
   - {fileID: 2100000, guid: 57a74d19b0a5bb340bea467c42db87d5, type: 2}
   - {fileID: 2100000, guid: 9e748ac6083993344837d5f85028883c, type: 2}
   - {fileID: 2100000, guid: ccbe09fb331550e48b449787d5d44ea6, type: 2}
+  - {fileID: 2100000, guid: 9e748ac6083993344837d5f85028883c, type: 2}
+  - {fileID: 2100000, guid: 57a74d19b0a5bb340bea467c42db87d5, type: 2}
+  - {fileID: 2100000, guid: 9e748ac6083993344837d5f85028883c, type: 2}
+  - {fileID: 2100000, guid: 57a74d19b0a5bb340bea467c42db87d5, type: 2}
+  - {fileID: 2100000, guid: 9e748ac6083993344837d5f85028883c, type: 2}
+  - {fileID: 2100000, guid: 57a74d19b0a5bb340bea467c42db87d5, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -822,7 +817,7 @@ GameObject:
   - component: {fileID: 1578945934}
   - component: {fileID: 1578945933}
   - component: {fileID: 1578945932}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Square (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -936,7 +931,7 @@ GameObject:
   - component: {fileID: 1667747379}
   - component: {fileID: 1667747378}
   - component: {fileID: 1667747377}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Square (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

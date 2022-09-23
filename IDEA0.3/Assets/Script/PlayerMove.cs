@@ -5,7 +5,6 @@ using UnityEditor;
 using UnityEngine;
 using System;
 
-//코드 최적화하자....
 public class PlayerMove : MonoBehaviour
 {
 
@@ -40,7 +39,7 @@ public class PlayerMove : MonoBehaviour
         skeleton = GetComponent<SkeletonMecanim>();
     }
 
-    void Update() //단발적인 키 입력
+    void Update()
     {
         MoveStop();
         for (int i = 0; i < keys.Length; i++)
@@ -49,37 +48,42 @@ public class PlayerMove : MonoBehaviour
         }
         keys[0].UpdateAction(() => Move(), () => run());
         keys[1].UpdateAction(() => Move(), () => run());
-        /*
-        keys[0].UpdateAction(() => Debug.Log("W"), () => Debug.Log("WW"));
-        keys[1].UpdateAction(() => Debug.Log("A"), () => Debug.Log("AA"));
-        keys[2].UpdateAction(() => Debug.Log("S"), () => Debug.Log("SS"));
-        keys[3].UpdateAction(() => Debug.Log("D"), () => Debug.Log("DD"));
-        */
-
+        //jump
         if (Input.GetButtonDown("Jump"))
         {
             rigid.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
-
+            _animator.SetBool("isJumping", true);
         }
-
 
         Animation();
 
     }
 
-    void FixedUpdate() // 꾹 누르거나...
+    void FixedUpdate()
     {
-        
-
-        //Move();
+        //RayCast
+        //Landing Platform
+        if(rigid.velocity.y < 0)
+        {
+            Debug.DrawRay(rigid.position, Vector3.down, new Color(0, 1, 0));
+            RaycastHit2D rayHit = Physics2D.Raycast(rigid.position, Vector3.down, 1, LayerMask.GetMask("Platform"));
+            if(rayHit.collider != null)
+            {
+                if(rayHit.distance < 5f)
+                {
+                    Debug.Log(rayHit.collider.name);
+                    _animator.SetBool("isJumping", false);
+                }
+            }
+        }
     }
 
     public void Move()
     {
         //Move By Key Control
-        var h = Input.GetAxisRaw("Horizontal"); //음수 양수 받음
+        var h = Input.GetAxisRaw("Horizontal"); // 0, 1, -1
         //int hNum = 0;
-        if (h != 0) //움직일 때. 방향 바꿈
+        if (h != 0) //move, derection
         {
             rigid.AddForce(Vector2.right * h, ForceMode2D.Impulse);
             if (h > 0)
@@ -91,8 +95,6 @@ public class PlayerMove : MonoBehaviour
                 transform.localScale = new Vector2(-1f, 1f);
             }
         }
-        //walk
-        //_animator.SetInteger("move 0", (int)(Mathf.Abs(h)));
 
 
         //Max Speed
@@ -107,9 +109,9 @@ public class PlayerMove : MonoBehaviour
     public void run()
     {
         //Move By Key Control
-        float h = Input.GetAxisRaw("Horizontal"); //음수 양수 받음
+        float h = Input.GetAxisRaw("Horizontal");
         //int hNum = 0;
-        if (h != 0) //움직일 때. 방향 바꿈
+        if (h != 0)
         {
             rigid.AddForce(Vector2.right * h, ForceMode2D.Impulse);
             if (h > 0)
@@ -134,16 +136,11 @@ public class PlayerMove : MonoBehaviour
         isRunning = true;
 
     }
-    public void Jump()
-    {
-        
-    }
 
     public void Animation()
     {
         //walk, idle animation
-        float xx = Input.GetAxisRaw("Horizontal"); //왼쪽 -1, 오른쪽 1 , 키를 때면 0
-        //_animator.SetFloat("move", Mathf.Abs(xx));//mathf.abs는 음수를 양수로 리턴
+        float xx = Input.GetAxisRaw("Horizontal"); 
         if(isRunning == false) _animator.SetInteger("move 0", (int)(Mathf.Abs(xx))); 
         else _animator.SetInteger("move 0", (int)(Mathf.Abs(xx) * 2));
         //attack
@@ -157,11 +154,6 @@ public class PlayerMove : MonoBehaviour
         {
             _animator.SetTrigger("attack2");
         }
-        //run
-        //if (rigid.velocity.x < (maxSpeed * 2) || rigid.velocity.x < (maxSpeed * (-1)) * 2)
-        //{
-        //    _animator.SetInteger("move 0", (int)(Mathf.Abs(xx)*2));
-        //}
 
 
 
@@ -171,12 +163,12 @@ public class PlayerMove : MonoBehaviour
         //Stop Speed
         if (Input.GetButtonUp("Horizontal"))
         {
-            // rigid.velocity.normalized 백터크기를 1로 바꿈 //단위 구할 때 getAxisRaw와 비슷함
+            // rigid.velocity.normalized ...Vector--> 1 //단위 구할 때 getAxisRaw와 비슷함
             rigid.velocity = new Vector2(rigid.velocity.normalized.x * 0.5f, rigid.velocity.y); //왼쪽 오른쪽 둘다 처리
 
         }
-        //Freeze 미끄러짐 방지
-        inputX = Input.GetAxis("Horizontal"); // -1f ~1f 받기
+        //Freeze 
+        inputX = Input.GetAxis("Horizontal"); // -1f ~1f 
         if (inputX == 0)
             rigid.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
         else
