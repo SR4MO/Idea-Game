@@ -41,6 +41,7 @@ public class PlayerMove : MonoBehaviour
 
     void Update()
     {
+        //walk, run
         MoveStop();
         for (int i = 0; i < keys.Length; i++)
         {
@@ -49,10 +50,11 @@ public class PlayerMove : MonoBehaviour
         keys[0].UpdateAction(() => Move(), () => run());
         keys[1].UpdateAction(() => Move(), () => run());
         //jump
-        if (Input.GetButtonDown("Jump"))
+        if (Input.GetButtonDown("Jump") && !_animator.GetBool("isJumping"))
         {
             rigid.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
             _animator.SetBool("isJumping", true);
+            
         }
 
         Animation();
@@ -83,8 +85,9 @@ public class PlayerMove : MonoBehaviour
         //Move By Key Control
         var h = Input.GetAxisRaw("Horizontal"); // 0, 1, -1
         //int hNum = 0;
-        if (h != 0) //move, derection
+        if (h != 0) //moving, derection
         {
+            _animator.SetBool("isWalking", true);
             rigid.AddForce(Vector2.right * h, ForceMode2D.Impulse);
             if (h > 0)
             {
@@ -95,6 +98,7 @@ public class PlayerMove : MonoBehaviour
                 transform.localScale = new Vector2(-1f, 1f);
             }
         }
+        
 
 
         //Max Speed
@@ -104,6 +108,7 @@ public class PlayerMove : MonoBehaviour
             rigid.velocity = new Vector2(maxSpeed * (-1), rigid.velocity.y);
 
         isRunning = false;
+        _animator.SetBool("isWalking", false);
 
     }
     public void run()
@@ -144,18 +149,25 @@ public class PlayerMove : MonoBehaviour
         if(isRunning == false) _animator.SetInteger("move 0", (int)(Mathf.Abs(xx))); 
         else _animator.SetInteger("move 0", (int)(Mathf.Abs(xx) * 2));
         //attack
-        if (Input.GetKeyDown(KeyCode.Z))
+        if (Input.GetKeyDown(KeyCode.Z) && _animator.GetBool("isJumping") == false)
         {
-            _animator.SetTrigger("attack");
-
+            if (_animator.GetInteger("move 0") == 0) _animator.SetTrigger("attack");
+            else if (_animator.GetInteger("move 0") == 1) _animator.SetTrigger("walk_attack");
+            else if (_animator.GetInteger("move 0") == 2) _animator.SetTrigger("run_attack");
         }
-        //ataack2
+        //jump_attack
+        if (Input.GetKeyDown(KeyCode.Z) && _animator.GetBool("isJumping") == true)
+        {
+            _animator.SetTrigger("jump_attack");
+        }
+         //ataack2
         if (Input.GetKeyDown(KeyCode.X))
         {
             _animator.SetTrigger("attack2");
         }
-
-
+        
+        
+        //rungattack
 
     }
     public void MoveStop()
